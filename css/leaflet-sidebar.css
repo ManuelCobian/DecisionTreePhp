@@ -1,0 +1,200 @@
+.sidebarmap {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 3000; }
+  .sidebarmap.collapsed {
+    width: 40px; }
+  @media (min-width: 768px) {
+    .sidebarmap {
+      top: 10px;
+      bottom: 10px;
+      transition: width 500ms; } }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .sidebarmap {
+      width: 305px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .sidebarmap {
+      width: 390px; } }
+  @media (min-width: 1200px) {
+    .sidebarmap {
+      width: 460px; } }
+
+.sidebarmap-left {
+  left: 0; }
+  @media (min-width: 768px) {
+    .sidebarmap-left {
+      left: 50px; } }
+
+.sidebarmap-right {
+  right: 0; }
+  @media (min-width: 768px) {
+    .sidebarmap-right {
+      right: 10px; } }
+
+.sidebarmap-tabs {
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  background-color: #fff; }
+  .sidebarmap-left .sidebarmap-tabs {
+    left: 0; }
+  .sidebarmap-right .sidebarmap-tabs {
+    right: 0; }
+  .sidebarmap-tabs, .sidebarmap-tabs > ul {
+    position: absolute;
+    width: 40px;
+    margin: 0;
+    padding: 0;
+    list-style-type: none; }
+    .sidebarmap-tabs > li, .sidebarmap-tabs > ul > li {
+      width: 100%;
+      height: 40px;
+      color: #333;
+      font-size: 12pt;
+      overflow: hidden;
+      transition: all 80ms; }
+      .sidebarmap-tabs > li:hover, .sidebarmap-tabs > ul > li:hover {
+        color: #000;
+        background-color: #eee; }
+      .sidebarmap-tabs > li.active, .sidebarmap-tabs > ul > li.active {
+        color: #fff;
+        background-color: #0074d9; }
+      .sidebarmap-tabs > li.disabled, .sidebarmap-tabs > ul > li.disabled {
+        color: rgba(51, 51, 51, 0.4); }
+        .sidebarmap-tabs > li.disabled:hover, .sidebarmap-tabs > ul > li.disabled:hover {
+          background: transparent; }
+        .sidebarmap-tabs > li.disabled > a, .sidebarmap-tabs > ul > li.disabled > a {
+          cursor: default; }
+      .sidebarmap-tabs > li > a, .sidebarmap-tabs > ul > li > a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        line-height: 40px;
+        color: inherit;
+        text-decoration: none;
+        text-align: center; }
+  .sidebarmap-tabs > ul + ul {
+    bottom: 0; }
+
+.sidebarmap-content {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  overflow-x: hidden;
+  overflow-y: auto; }
+  .sidebarmap-left .sidebarmap-content {
+    left: 40px;
+    right: 0; }
+  .sidebarmap-right .sidebarmap-content {
+    left: 0;
+    right: 40px; }
+  .sidebarmap.collapsed > .sidebarmap-content {
+    overflow-y: hidden; }
+
+.sidebarmap-pane {
+  display: none;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 10px 20px; }
+  .sidebarmap-pane.active {
+    display: block; }
+  @media (min-width: 768px) and (max-width: 991px) {
+    .sidebarmap-pane {
+      min-width: 265px; } }
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .sidebarmap-pane {
+      min-width: 350px; } }
+  @media (min-width: 1200px) {
+    .sidebarmap-pane {
+      min-width: 420px; } }
+
+.sidebarmap-header {
+  margin: -10px -20px 0;
+  height: 40px;
+  padding: 0 20px;
+  line-height: 40px;
+  font-size: 14.4pt;
+  color: #fff;
+  background-color: #0074d9; }
+  .sidebarmap-right .sidebarmap-header {
+    padding-left: 40px; }
+
+.sidebarmap-close {
+  position: absolute;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  cursor: pointer; }
+  .sidebarmap-left .sidebarmap-close {
+    right: 0; }
+  .sidebarmap-right .sidebarmap-close {
+    left: 0; }
+
+.sidebarmap-left ~ .sidebarmap-map {
+  margin-left: 40px; }
+  @media (min-width: 768px) {
+    .sidebarmap-left ~ .sidebarmap-map {
+      margin-left: 0; } }
+
+.sidebarmap-right ~ .sidebarmap-map {
+  margin-right: 40px; }
+  @media (min-width: 768px) {
+    .sidebarmap-right ~ .sidebarmap-map {
+      margin-right: 0; } }
+
+.sidebarmap {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65); }
+  .sidebarmap.leaflet-touch {
+    box-shadow: none;
+    border-right: 2px solid rgba(0, 0, 0, 0.2); }
+  @media (min-width: 768px) {
+    .sidebarmap {
+      border-radius: 4px; }
+      .sidebarmap.leaflet-touch {
+        border: 2px solid rgba(0, 0, 0, 0.2); } }
+
+@media (min-width: 768px) {
+  .sidebarmap-left ~ .sidebarmap-map .leaflet-left {
+    transition: left 500ms; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebarmap-left ~ .sidebarmap-map .leaflet-left {
+    left: 315px; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .sidebarmap-left ~ .sidebarmap-map .leaflet-left {
+    left: 400px; } }
+
+@media (min-width: 1200px) {
+  .sidebarmap-left ~ .sidebarmap-map .leaflet-left {
+    left: 470px; } }
+
+@media (min-width: 768px) {
+  .sidebarmap-left.collapsed ~ .sidebarmap-map .leaflet-left{
+    left: 50px; } }
+
+@media (min-width: 768px) {
+  .sidebarmap-right ~ .sidebarmap-map .leaflet-right {
+    transition: right 500ms; } }
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .sidebarmap-right ~ .sidebarmap-map .leaflet-right {
+    right: 315px; } }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .sidebarmap-right ~ .sidebarmap-map .leaflet-right {
+    right: 400px; } }
+
+@media (min-width: 1200px) {
+  .sidebarmap-right ~ .sidebarmap-map .leaflet-right {
+    right: 470px; } }
+
+@media (min-width: 768px) {
+  .sidebarmap-right.collapsed ~ .sidebarmap-map .leaflet-right {
+    right: 50px; } }

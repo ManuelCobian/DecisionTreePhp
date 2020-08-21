@@ -1,0 +1,11 @@
+RewriteEngine on
+RewriteCond $1 !(index\.php|robots\.txt|sitemap\.xml|font-awesome|img|bower_components|plantilla|assets|fonts|js|css)
+RewriteRule ^/(.*)$ index.php/$1 [QSA]
+
+
+#codigo para redireccionar HTTPS
+#RewriteEngine On
+#RewriteCond %{ENV:HTTPS} !on [NC]
+#RewriteCond %{SERVER_PORT} 80
+#RewriteRule ^(.*)$ http://localhost:88/flock/trunk/flock_users/ [R=301,L,NE]
+

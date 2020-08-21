@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization},L]
+
+RewriteCond $1 !^(index\.php|robots\.txt|sitemap\.xml|font-awesome|img|bower_components|plantilla|assets|fonts|js|css)
+RewriteRule ^/(.*)$ index.php/$1 [QSA]

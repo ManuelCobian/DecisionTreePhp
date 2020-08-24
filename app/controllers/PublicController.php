@@ -29,24 +29,10 @@ class PublicController extends ControllerBase
 
 
 
-    /*  METHOD MAIN OF THE TEMPLETE   */
   public function index(){
-
-    session_start(); 
-
-      if(isset($_SESSION)) 
-      { 
-
-        ini_set('memory_limit', '-1');
-        @set_time_limit(-1);
-        if (isset($_SESSION['groups'][8])) {
-
-        
-       	  $campain=new Campaigns("campaigns");
-
-         
-
-          $script = "";
+    ini_set('memory_limit', '-1');
+    @set_time_limit(-1);
+    $script = "";
 
           $script.= '<script type="text/javascript"> function cargar() { ';
           $script.= ' /* Traer el widget */
@@ -57,14 +43,14 @@ class PublicController extends ControllerBase
           $script.= ' link.onload = cargar(); ';
           $script.= '</script>';
 
-          $query= $campain->getAll_campain(-1,1);
+          
 
 
-          $script=array('web/campains/scripts','admin/scripts');
+          $script=array('admin/scripts');
 
 
           $this->view("templates/Template", array(
-            "allusers" =>$query,
+            "allusers" =>"",
             "Hola" => "videoEjemplo de MVC",
             "title"=>"Welcome",
             "contraer"=>true,
@@ -77,45 +63,7 @@ class PublicController extends ControllerBase
           )); 
 
 
-        }else{
-
-          
-          $script = "";
-
-          $script.= '<script type="text/javascript"> function cargar() { ';
-          $script.= ' /* Traer el widget */
-                  
-                  ';
-          $script.= ' } ';
-          $script.= ' var link = document.getElementById("cuadros"); ';
-          $script.= ' link.onload = cargar(); ';
-          $script.= '</script>';
-          $script=array('web/campains/scriptsuser','admin/scripts');
-
-          $this->view("templates/Template", array(
-            "allusers" =>$query,
-            "Hola" => "videoEjemplo de MVC",
-            "title"=>"Welcome",
-            "contraer"=>true,
-            "pagina"=>"templates/TempleteUser",
-            "carpeta"=>1,
-            "pagina_interna"=>"admin/paneluser",
-            //"scripts_chart"=>$script,
-            "carpeta"=>2,
-            "scripts"=>$script,
-          )); 	
-
-        }
-
-
-
-      }
-      else{
-          header("Location:https://manager.theflock.marketing/flock_users/");
-          
-      }
   }
-
 
 
 

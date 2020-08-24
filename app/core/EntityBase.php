@@ -1,27 +1,16 @@
 <?php  
 
 
-
-//require_once ("Conexion.php");
-//use core\Conexion as Conectar;
-
-
-class EntityBase extends spyder
+class EntityBase 
 {
 	private $table, $db, $conectar,$db2,$settings_main,$db_jom;
 
-	public function __construct($table,$settings)
-	{
-
+	public function __construct($table,$settings){
 		
-		parent::__construct($settings);
-		$this->settings_main=$settings;
-		$this->db_jom=0;
-		$this->table=(string) $table;
-		//require_once 'Conectar.php';
-		//$this->conectar = Conectar::getConnect();
-		//$this->db = $this->conectar;
-		$this->db=$this->get_db();
+		require "connection.php";
+		$this->conectar = connection::getConnect();
+		
+		$this->db=$this->conectar->getConnect();
 	}
 
 	

@@ -91,7 +91,7 @@
 		<section  id="cuadros" class="col-lg-9 connectedSortable" >
 
 			<div class="row">
-			<h1 class="text-center"> <?php echo "Welcome to User Panel"." ".$_SESSION['user_name'];?></h1></center>	
+			<h1 class="text-center"> <?php echo "Welcome to User Panel"." ";?></h1></center>	
        
 
        
@@ -337,7 +337,7 @@
                   <div class="widget-user-image">
                    <img src="<?php echo  BASE_TEMPLATE.'/'.ROOT_USERS."sinfoto.png"; ?>" class="img-circle" alt="Imagen del Usuario" width="50%"> 
                   </div>
-                  <h3 class="widget-user-username"><?php echo $_SESSION['email']; ?></h3>
+                  <h3 class="widget-user-username"><?php echo "Admin" ?></h3>
                   <h5 class="widget-user-desc">Admin</h5>
                 </div>
                

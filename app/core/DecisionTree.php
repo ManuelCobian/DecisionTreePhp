@@ -1,6 +1,7 @@
 <?php 
 namespace core;
 use core\Tree as Tree;
+use core\Node as Node;
 class DecisionTree extends Tree {
 	private $training_data;
 	private $display_debug;

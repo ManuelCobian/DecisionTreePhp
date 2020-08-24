@@ -30,9 +30,9 @@ class PublicController extends ControllerBase
 
 
   public function index(){
-    ini_set('memory_limit', '-1');
-    @set_time_limit(-1);
-    $script = "";
+         ini_set('memory_limit', '-1');
+         @set_time_limit(-1);
+         $script = "";
 
           $script.= '<script type="text/javascript"> function cargar() { ';
           $script.= ' /* Traer el widget */

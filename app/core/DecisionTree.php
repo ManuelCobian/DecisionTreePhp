@@ -1,15 +1,16 @@
 <?php 
-namespace core;
-use core\Tree as Tree;
-use core\Node as Node;
+require_once('tree.php');
+require_once('Node.php');
+
 class DecisionTree extends Tree {
 	private $training_data;
 	private $display_debug;
 
-	public function __construct($csv_with_header, $display_debug=0) {	
+	public function __construct($csv_with_header, $display_debug=0) {
+       	
 		$this->display_debug = $display_debug;
         $this->training_data = $this->csv_to_array($csv_with_header);
-        
+      
 		array_pop($this->training_data['header']);		
 		parent::__construct(new Node('Root'));
 		$this->find_root($this->root, 'Any', $this->training_data);

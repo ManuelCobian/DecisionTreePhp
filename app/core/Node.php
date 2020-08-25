@@ -1,6 +1,4 @@
 <?php
-
-namespace core;
 class Node {
 	public 	$value;
 	public	$namedBranches;

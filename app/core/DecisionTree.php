@@ -5,15 +5,22 @@ require_once('Node.php');
 class DecisionTree extends Tree {
 	private $training_data;
 	private $display_debug;
+	private $csv_with_header;
 
 	public function __construct($csv_with_header, $display_debug=0) {
        	
 		$this->display_debug = $display_debug;
+		$this->csv_with_header=$csv_with_header;
         $this->training_data = $this->csv_to_array($csv_with_header);
       
-		array_pop($this->training_data['header']);		
+		$array_po=array_pop($this->training_data['header']);	
+	
 		parent::__construct(new Node('Root'));
 		$this->find_root($this->root, 'Any', $this->training_data);
+	}
+
+	public function get_trainig_data(){
+		return $this->csv_to_array($this->csv_with_header);
 	}
 	
 	public function predict_outcome($data_file) {

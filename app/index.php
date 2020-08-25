@@ -1,21 +1,13 @@
-<?php  
-require_once 'config/constants.php';
-require_once 'core/ControllerBase.php';
-require_once 'core/LoadController.php';
-define('DS', DIRECTORY_SEPARATOR);
-define('ROOT', realpath(dirname(__FILE__)) . DS);
-define('URL', BASE_URL);
-require_once 'core/Autoload.php';
+<?php
+require_once('core/DecisionTree.php');
+use DecisionTree as DecisionTree;
+error_reporting(E_ALL | E_STRICT);
 
-core\Autoload::run();
-if (isset($_GET["controller"])) {
-	
-	//die();
-	$controllerObj = core\cargarControlador($_GET["controller"]);
-	core\lanzarAccion($controllerObj);
-}
-else{
-	
-	$controllerObj = core\cargarControlador(CONTROLADOR_DEFAULT);
-	core\lanzarAccion($controllerObj);
-}
+    echo "Using training data to generate Decision tree...\n";
+    $dec_tree = new DecisionTree('data/data.csv', 0);
+    echo "Decision tree using ID3:\n";
+    $dec_tree->display();
+    echo "<br>";
+    echo "Prediction on new data set\n";
+    $dec_tree->predict_outcome('data/input_data.csv');
+    exit();

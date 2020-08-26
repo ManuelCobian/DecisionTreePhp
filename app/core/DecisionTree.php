@@ -22,6 +22,10 @@ class DecisionTree extends Tree {
 	public function get_trainig_data(){
 		return $this->csv_to_array($this->csv_with_header);
 	}
+
+	public function get_simples_data($csv_input){
+		return $this->csv_to_array($csv_input);
+	}
 	
 	public function predict_outcome($data_file) {
 		$this->input_data = $this->csv_to_array($data_file);

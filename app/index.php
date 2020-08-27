@@ -75,5 +75,5 @@ error_reporting(E_ALL | E_STRICT);
     echo "</table></center>";
 
     echo "Prediction on new data set\n";
-   // $dec_tree->predict_outcome('data/input_data.csv');
+   //$dec_tree->predict_outcome('data/input_data.csv');
     exit();

@@ -35,10 +35,12 @@ class DecisionTree extends Tree {
 		//print_r($row);
 		foreach($data as $k => $row) {
 			$row['result'] = $this->predict($this->root, $row);	
+			var_dump($row['result']);
 			$data[$k] = $row;
 		}
-		echo "\n";
-		print_r($data);
+		//echo "\n";
+		
+		
 	}
 	
 	private function predict($node, $data_row) {
@@ -50,9 +52,11 @@ class DecisionTree extends Tree {
 		if ( array_key_exists($node->value, $data_row) ) {
 			print_r("\nValue of " . $node->value . " is " . $data_row[$node->value]);
 			if ( array_key_exists($data_row[$node->value], $node->namedBranches) ) {
-				print_r("\nBranch " . $data_row[$node->value] . " exists and leads to node " . $node->namedBranches[$data_row[$node->value]]->value);
+				//print_r("\nBranch " . $data_row[$node->value] . " exists and leads to node " . $node->namedBranches[$data_row[$node->value]]->value);
 				$next_node = $node->namedBranches[$data_row[$node->value]];
 				return($this->predict($next_node, $data_row));
+
+				
 			}
 				/*if ( $value != null ) {			
 					return $value;

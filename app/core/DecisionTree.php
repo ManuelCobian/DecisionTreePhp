@@ -5,15 +5,26 @@ require_once('Node.php');
 class DecisionTree extends Tree {
 	private $training_data;
 	private $display_debug;
+	private $csv_with_header;
 
 	public function __construct($csv_with_header, $display_debug=0) {
        	
 		$this->display_debug = $display_debug;
+		$this->csv_with_header=$csv_with_header;
         $this->training_data = $this->csv_to_array($csv_with_header);
       
-		array_pop($this->training_data['header']);		
+		$array_po=array_pop($this->training_data['header']);	
+	
 		parent::__construct(new Node('Root'));
 		$this->find_root($this->root, 'Any', $this->training_data);
+	}
+
+	public function get_trainig_data(){
+		return $this->csv_to_array($this->csv_with_header);
+	}
+
+	public function get_simples_data($csv_input){
+		return $this->csv_to_array($csv_input);
 	}
 	
 	public function predict_outcome($data_file) {
@@ -24,10 +35,12 @@ class DecisionTree extends Tree {
 		//print_r($row);
 		foreach($data as $k => $row) {
 			$row['result'] = $this->predict($this->root, $row);	
+			var_dump($row['result']);
 			$data[$k] = $row;
 		}
-		echo "\n";
-		print_r($data);
+		//echo "\n";
+		
+		
 	}
 	
 	private function predict($node, $data_row) {
@@ -39,9 +52,11 @@ class DecisionTree extends Tree {
 		if ( array_key_exists($node->value, $data_row) ) {
 			print_r("\nValue of " . $node->value . " is " . $data_row[$node->value]);
 			if ( array_key_exists($data_row[$node->value], $node->namedBranches) ) {
-				print_r("\nBranch " . $data_row[$node->value] . " exists and leads to node " . $node->namedBranches[$data_row[$node->value]]->value);
+				//print_r("\nBranch " . $data_row[$node->value] . " exists and leads to node " . $node->namedBranches[$data_row[$node->value]]->value);
 				$next_node = $node->namedBranches[$data_row[$node->value]];
 				return($this->predict($next_node, $data_row));
+
+				
 			}
 				/*if ( $value != null ) {			
 					return $value;

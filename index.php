@@ -7,7 +7,7 @@ $subjects = [
     0 => ['gender' => 'male',   'age' => 41, 'playsFootball' => 'nope', 'canCook' => 'yes'],
     1 => ['gender' => 'female', 'age' => 91, 'playsFootball' => 'nope', 'canCook' => 'nope'],
     2 => ['gender' => 'male',   'age' => 17, 'playsFootball' => 'nope', 'canCook' => 'yes'],
-    3 => ['gender' => 'female', 'age' => 39, 'playsFootball' => 'nope', 'canCook' => 'yes'],
+    3 => ['gender' => 'male', 'age' => 39,   'playsFootball' => 'yes', 'canCook' => 'yes'],
     4 => ['gender' => 'male',   'age' => 90, 'playsFootball' => 'nope', 'canCook' => 'yes'],
     5 => ['gender' => 'male',   'age' => 48, 'playsFootball' => 'yes', 'canCook' => 'nope'],
     6 => ['gender' => 'male',   'age' => 86, 'playsFootball' => 'yes',  'canCook' => 'nope'],
@@ -36,11 +36,7 @@ $footballDecisions = [
 
 // Create from bottom up
 
-// We want all subjects who don't play football
-$footballDecisions = [
-    'play' => new TerminalNode(),
-    'does not play' => new TerminalNode(), // This is our last node
-];
+
 
 // Create the decider for football
 $footballDecider = new DecisionNode(function ($subject) {
@@ -53,7 +49,7 @@ $footballDecider = new DecisionNode(function ($subject) {
 // Great, next we need the cook-decisions.
 $cookDecisions = [
     'can cook' => $footballDecider, // redirect all subjects who can cook to the $footballDecider
-    'can not cook' => $footballDecider,
+    'can not cook' => new TerminalNode(),
 ];
 
 // Now the cookDecider
@@ -62,7 +58,7 @@ $cookDecider = new DecisionNode(function ($subject) {
 }, $cookDecisions);
 
 // The same as previous for the next 2 decisions
-var_dump($cookDecisions);
+
 
 $ageDecisions = [
     '< 50' => $cookDecider,
@@ -125,6 +121,253 @@ $rootNode->classify();
 
 
 
+ 
+
+    echo "<center><h3>Males</h3></center>";
+  
+    echo "<center><table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th><center>"."Gender"."</center></th>";
+    echo "<th><center>"."Age"."</center></th>";
+    echo "<th><center>"."Football"."</center></th>";
+    echo "<th><center>"."Cook"."</center></th>";
+    
+    echo "<tr>";
+    
+    echo "<thead>";
+
+    echo "<tbody>";
+    foreach($genderDecisions['male']->subjects as $simples){
+      
+        echo "<tr>";
+        echo "<td><center>".$simples["gender"]."</center></td>";
+        echo "<td><center>".$simples["age"]."</center></td>";
+        echo "<td><center>".$simples["playsFootball"]."</center></td>";
+        echo "<td><center>".$simples["canCook"]."</center></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    
+   
+
+    echo "</table></center>";
+
+    echo "<br>";
+
+
+
+    echo "<center><h3>Famales</h3></center>";
+  
+    echo "<center><table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th><center>"."Gender"."</center></th>";
+    echo "<th><center>"."Age"."</center></th>";
+    echo "<th><center>"."Football"."</center></th>";
+    echo "<th><center>"."Cook"."</center></th>";
+    
+    echo "<tr>";
+    
+    echo "<thead>";
+
+    echo "<tbody>";
+    foreach($genderDecisions['female']->subjects as $simples){
+      
+        echo "<tr>";
+        echo "<td><center>".$simples["gender"]."</center></td>";
+        echo "<td><center>".$simples["age"]."</center></td>";
+        echo "<td><center>".$simples["playsFootball"]."</center></td>";
+        echo "<td><center>".$simples["canCook"]."</center></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    
+   
+
+    echo "</table></center>";
+
+    echo "<br>";
+
+
+  
+
+    echo "<center><h3>Males age >=50</h3></center>";
+  
+    echo "<center><table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th><center>"."Gender"."</center></th>";
+    echo "<th><center>"."Age"."</center></th>";
+    echo "<th><center>"."Football"."</center></th>";
+    echo "<th><center>"."Cook"."</center></th>";
+    
+    echo "<tr>";
+    
+    echo "<thead>";
+
+    echo "<tbody>";
+    foreach($ageDecisions['>= 50']->subjects as $simples){
+      
+        echo "<tr>";
+        echo "<td><center>".$simples["gender"]."</center></td>";
+        echo "<td><center>".$simples["age"]."</center></td>";
+        echo "<td><center>".$simples["playsFootball"]."</center></td>";
+        echo "<td><center>".$simples["canCook"]."</center></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    
+   
+
+    echo "</table></center>";
+
+    echo "<br>";
+
+
+
+    
+    echo "<br>";
+
+    echo "<center><h3>Males age <50 </h3></center>";
+  
+    echo "<center><table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th><center>"."Gender"."</center></th>";
+    echo "<th><center>"."Age"."</center></th>";
+    echo "<th><center>"."Football"."</center></th>";
+    echo "<th><center>"."Cook"."</center></th>";
+    
+    echo "<tr>";
+    
+    echo "<thead>";
+
+    echo "<tbody>";
+    foreach($ageDecisions['< 50']->subjects as $simples){
+      
+        echo "<tr>";
+        echo "<td><center>".$simples["gender"]."</center></td>";
+        echo "<td><center>".$simples["age"]."</center></td>";
+        echo "<td><center>".$simples["playsFootball"]."</center></td>";
+        echo "<td><center>".$simples["canCook"]."</center></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    
+   
+
+    echo "</table></center>";
+
+    echo "<br>";
+
+    echo "<center><h3>Peoople Can cook </h3></center>";
+    $tranning_data=$subjects;
+    echo "<center><table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th><center>"."Gender"."</center></th>";
+    echo "<th><center>"."Age"."</center></th>";
+    echo "<th><center>"."Football"."</center></th>";
+    echo "<th><center>"."Cook"."</center></th>";
+    
+    echo "<tr>";
+    
+    echo "<thead>";
+
+    echo "<tbody>";
+    foreach($cookDecisions['can cook']->subjects as $simples){
+      
+        echo "<tr>";
+        echo "<td><center>".$simples["gender"]."</center></td>";
+        echo "<td><center>".$simples["age"]."</center></td>";
+        echo "<td><center>".$simples["playsFootball"]."</center></td>";
+        echo "<td><center>".$simples["canCook"]."</center></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    
+   
+
+    echo "</table></center>";
+
+    echo "<br>";
+    
+    
+    echo "<center><h3>Peoople Can not cook </h3></center>";
+    $tranning_data=$subjects;
+    echo "<center><table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th><center>"."Gender"."</center></th>";
+    echo "<th><center>"."Age"."</center></th>";
+    echo "<th><center>"."Football"."</center></th>";
+    echo "<th><center>"."Cook"."</center></th>";
+    
+    echo "<tr>";
+    
+    echo "<thead>";
+
+    echo "<tbody>";
+    foreach($cookDecisions['can not cook']->subjects as $simples){
+      
+        echo "<tr>";
+        echo "<td><center>".$simples["gender"]."</center></td>";
+        echo "<td><center>".$simples["age"]."</center></td>";
+        echo "<td><center>".$simples["playsFootball"]."</center></td>";
+        echo "<td><center>".$simples["canCook"]."</center></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    
+   
+
+    echo "</table></center>";
+
+    echo "<br>";
+    
+
+   
+
+
+
+    echo "<center><h3>males under 50 can  cook & can play football </h3></center>";
+  
+    echo "<center><table>";
+    echo "<thead>";
+    echo "<tr>";
+    echo "<th><center>"."Gender"."</center></th>";
+    echo "<th><center>"."Age"."</center></th>";
+    echo "<th><center>"."Football"."</center></th>";
+    echo "<th><center>"."Cook"."</center></th>";
+    
+    echo "<tr>";
+    
+    echo "<thead>";
+
+    echo "<tbody>";
+    foreach($footballDecisions['play']->subjects as $simples){
+      
+        echo "<tr>";
+        echo "<td><center>".$simples["gender"]."</center></td>";
+        echo "<td><center>".$simples["age"]."</center></td>";
+        echo "<td><center>".$simples["playsFootball"]."</center></td>";
+        echo "<td><center>".$simples["canCook"]."</center></td>";
+        echo "</tr>";
+    }
+    echo "</tbody>";
+    
+   
+
+    echo "</table></center>";
+
+    echo "<br>";
+
+
+ 
+
+
+  
     echo "<center><h3>males under 50 can cook does not play football </h3></center>";
     $tranning_data=$subjects;
     echo "<center><table>";
@@ -155,45 +398,14 @@ $rootNode->classify();
 
     echo "</table></center>";
 
+    
+
     echo "<br>";
 
 
-
-    echo "<center><h3>males under 50 can not cook can play football </h3></center>";
-    $tranning_data=$subjects;
-    echo "<center><table>";
-    echo "<thead>";
-    echo "<tr>";
-    echo "<th><center>"."Gender"."</center></th>";
-    echo "<th><center>"."Age"."</center></th>";
-    echo "<th><center>"."Football"."</center></th>";
-    echo "<th><center>"."Cook"."</center></th>";
-    
-    echo "<tr>";
-    
-    echo "<thead>";
-
-    echo "<tbody>";
-    foreach($footballDecisions['play']->subjects as $simples){
-      
-        echo "<tr>";
-        echo "<td><center>".$simples["gender"]."</center></td>";
-        echo "<td><center>".$simples["age"]."</center></td>";
-        echo "<td><center>".$simples["playsFootball"]."</center></td>";
-        echo "<td><center>".$simples["canCook"]."</center></td>";
-        echo "</tr>";
-    }
-    echo "</tbody>";
-    
-   
-
-    echo "</table></center>";
-
-    echo "<br>";
-    
     
 
-if(!is_null($footballDecisions['does not play']) ){
+/*if(!is_null($footballDecisions['does not play']) ){
   
     var_dump($footballDecisions['does not play']);
 }
@@ -201,6 +413,11 @@ if(!is_null($footballDecisions['play']) ){
     print_r($footballDecisions['play']);
 }
 
+var_dump($genderDecisions);
+
+
+var_dump($genderDecisions);
+
 //print_r($footballDecisions['does not play']);
 
-//print_r($footballDecisions['play']);
+//print_r($footballDecisions['play']);*/
